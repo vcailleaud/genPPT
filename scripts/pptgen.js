@@ -25,5 +25,5 @@ function onButtonClick() {
 }
 
 
-const button = document.querySelector('button');
-button.addEventListener('click', onButtonClick);
+//const button = document.querySelector('button');
+//button.addEventListener('click', onButtonClick);
