@@ -21,7 +21,7 @@ function onButtonClick() {
 	'BONJOUR - CIAO - GUTEN TAG - HELLO - HOLA - NAMASTE - OLÀ - ZDRAS-TVUY-TE - こんにちは - 你好',
 	opts
   );
-  pptx.writeFile();
+  pptx.writeFile({ fileName: "Presentation.pptx" });
 }
 
 

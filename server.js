@@ -115,7 +115,7 @@ var server = http.createServer(function(req, res) {
 																<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vcailleaud/Orange-OKRtree@1.0.0/styles/okrtree.css">
 																<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
 																<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
-																<script src="https://cdn.jsdelivr.net/gh/vcailleaud/genPPT@1.0.0/scripts/pptgen.js"></script>
+																<script src="https://cdn.jsdelivr.net/gh/vcailleaud/genPPT@1.0.1/scripts/pptgen.js"></script>
 																<style>
 																	body {
 																		background: var(--light);
@@ -131,7 +131,7 @@ var server = http.createServer(function(req, res) {
 																	<button type="button" class="btn btn-primary px-5" onclick="onButtonClick()">Generate Demo PowerPoint</button>
 																</h6>
 															</div>
-															<button>Click me!</button>
+															<button onclick="onButtonClick()">Click me!</button>
 															</body>
 														</html>
 														`;												
