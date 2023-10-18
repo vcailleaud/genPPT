@@ -109,19 +109,18 @@ var server = http.createServer(function(req, res) {
 												//Google chart test
 												var html1 = `<html>
 															<head>
-															<meta charset="utf-8">
+																<meta charset="utf-8">
 																<meta name="description" content="">
 																<meta name="author" content="">
-															<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vcailleaud/Orange-OKRtree@1.0.0/styles/okrtree.css">
-															<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
-															<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
-															<style>
-															body {
-																background: var(--light);
-															  }
-															</style>
-															
-															
+																<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vcailleaud/Orange-OKRtree@1.0.0/styles/okrtree.css">
+																<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
+																<script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
+																<script src="https://cdn.jsdelivr.net/gh/vcailleaud/genPPT@main/scripts/pptgen.js"></script>
+																<style>
+																	body {
+																		background: var(--light);
+																	}
+																</style>															
 															</head>
 															<body>
 															<div class="container py-3">
@@ -129,11 +128,10 @@ var server = http.createServer(function(req, res) {
 																<h5 class="text-secondary font-weight-light">Generate PowerPoint from Triskell</h5>
 																<h6 class="bg-white border p-3 my-5">
 																	<p>Generate a "Hello World" presentation on any modern desktop or mobile browser.</p>
-																	<button type="button" class="btn btn-primary px-5" onclick="do7cells()">
-																	Generate Demo PowerPoint
-																	</button>
+																	<button type="button" class="btn btn-primary px-5" onclick="do7cells()">Generate Demo PowerPoint</button>
 																</h6>
 															</div>
+															<button>Click me!</button>
 															</body>
 														</html>
 														`;												

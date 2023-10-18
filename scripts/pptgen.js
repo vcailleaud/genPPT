@@ -4,7 +4,7 @@
 let pptx = new PptxGenJS();
 
 // Simple Slide
-function do7cells() {
+function onButtonClick() {
   let pptx = new PptxGenJS();
   let slide = pptx.addSlide();
   let opts = {
@@ -23,3 +23,7 @@ function do7cells() {
   );
   pptx.writeFile();
 }
+
+
+const button = document.querySelector('button');
+button.addEventListener('click', onButtonClick);
