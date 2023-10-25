@@ -117,7 +117,8 @@ var server = http.createServer(function(req, res) {
 																<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
 																<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@latest/dist/pptxgen.min.js"></script>
 																<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/vcailleaud/genPPT@1.0.2/scripts/pptgen.js"></script>
-
+																<link href=" https://cdn.jsdelivr.net/npm/roboto-font@0.1.0/css/fonts.min.css " rel="stylesheet">
+																
 																<script type="text/javascript">
 																	// Flash Report
 																	function flashPPT() {
@@ -217,10 +218,22 @@ var server = http.createServer(function(req, res) {
 															
 																		pptx.writeFile({ fileName: "Flash report.pptx" });
 																	}
-																</script>															
+																</script>
+																<style>
+																.button {
+																	background-color: #43a047; /* Green */
+																	border: none;
+																	color: white;
+																	
+																	font-size: 16px;
+																	font-family: "Roboto-Regular";
+																	border-radius: 5px;
+																	
+																}
+																</style>															
 															</head>
 															<body>
-																<button onclick="flashPPT()">Generate the Flash Report</button>
+																<button class="button" onclick="flashPPT()">Generate the Flash Report</button>
 															</body>
 														</html>
 														`;												
