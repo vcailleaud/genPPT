@@ -1,5 +1,8 @@
+//const https = require('https');
 const http = require('http');
 const url = require('url');
+// Requiring file system to use local files 
+const fs = require("fs"); 
 var config = require('./config');
 
 require('mkdirp').sync('logs') // your log directory
@@ -30,7 +33,16 @@ log4js.configure({
  * date    : 3/10/2021
  * author  : Vincent Cailleaud
  */
-var server = http.createServer(function(req, res) {
+
+// Creating object of key and certificate 
+// for SSL 
+const options = { 
+	key: fs.readFileSync("server.key"), 
+	cert: fs.readFileSync("server.cert"), 
+  }; 
+
+var server = http.createServer(options, function(req, res) {
+//var server = https.createServer(options, function(req, res) {
 	var page = url.parse(req.url).pathname;
 	var dataObjectId = '';
 	var dataObjectName = '';
@@ -302,7 +314,7 @@ function format1(n, currency) {
 server.timeout = 0; //Set to 0 to disable any kind of automatic timeout behavior on incoming connections.
 
 server.listen(port, hostname, () => {
-  console.log(new Date().toISOString()+ ' - ' + `Server running at http://${hostname}:${port}/`);
+  console.log(new Date().toISOString()+ ' - ' + `Server running at http(s)://${hostname}:${port}/`);
 });
 
 process.on('uncaughtException', function (err) {
