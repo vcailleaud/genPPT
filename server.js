@@ -36,12 +36,14 @@ log4js.configure({
 
 // Creating object of key and certificate 
 // for SSL 
+/*
 const options = { 
 	key: fs.readFileSync("server.key"), 
 	cert: fs.readFileSync("server.cert"), 
   }; 
+  */
 
-var server = http.createServer(options, function(req, res) {
+var server = http.createServer(function(req, res) {
 //var server = https.createServer(options, function(req, res) {
 	var page = url.parse(req.url).pathname;
 	var dataObjectId = '';
