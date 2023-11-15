@@ -862,6 +862,88 @@ var methods = {
 			req.end();
 		}
 	},
+
+	/**
+	 * Run report
+	 */
+	executeReport: function (server, login, token, reportId, parameters, logger, callback) {
+		//'use strict';
+		
+		var body = JSON.stringify({
+			'id' : 0, 
+			'params' : {
+				"REPORTID": reportId.toString(), 
+				"valuesByParams": parameters.toString()
+			} , 
+			'objects' : null 
+		});
+			
+		let buff = new Buffer.from(body);
+		let base64data = buff.toString('base64');
+		var uri = '/triskell/service/rest/proxy/operation/execute/ReportService/GetReportDataToPanel/'+base64data;
+		var response = "";
+
+		var options = {
+			hostname:  server,
+			port: 443,
+			path: uri,
+			method: 'GET',
+			headers: {
+			'X-Account-Name': login,
+			'X-API-Key': token,
+			'Content-Length': response.length
+			}
+		}
+
+		var nretryReport = -1;
+		var maxretryReport = 5;
+		
+		retryReport = function() {
+			nretryReport++;
+					
+			logger.debug('executeReport.server : ' + server);
+			logger.debug('executeReport.uri : ' + uri);
+			logger.debug('executeReport.body : ' + body.toString());
+			
+			var req = https.request(options, function(res) {
+				res.setEncoding('utf8');
+				
+				var data;
+				res.on('data', function(chunks) {
+					if (!data) {
+						data = chunks;
+					} else {
+						data += chunks;
+					}
+				}).on("end", function() {
+					const response = JSON.parse(data);
+					logger.debug('executeReport.response : ' + data);
+					if (response.success) {
+						logger.debug("executeReport Id:" + reportId.toString() + ", Try(" + nretryReport + "): " + "success");
+						callback(null, response);
+					} else {
+						logger.debug("executeReport Id:" + reportId.toString() + ", Try(" + nretryReport + "): " + response.message);
+						console.log(new Date().toISOString()+" - executeReport Id:" + reportId.toString() + ", Try(" + nretryReport + "): " + response.message);
+						if(nretryReport >= maxretryReport){
+							callback(response, null);
+						} else {
+							setTimeout(retryReport, 2000, nretryReport);
+						}
+					}
+				});
+			});
+			
+			// write data to request body
+			req.write(body);
+			req.end();
+
+			req.on('error', function(e) {
+				logger.debug('problem with the request: ' + e.message);
+				console.log(new Date().toISOString()+' - problem with the request: ' + e.message);
+			});
+		}
+		retryReport(0);
+	},
 	
 	padLeadingZeros: function (num, size) {
 		var s = num+"";
