@@ -777,6 +777,16 @@ var server = http.createServer(function(req, res) {
 																	.btn-orange:hover {
 																		background-color: #d46322;
 																	}
+
+																	table {
+																		border-collapse: collapse;
+																		border: 2px black solid;
+																		font: 12px sans-serif;
+																		}
+																		td {
+																		border: 1px black solid;
+																		padding: 5px;
+																	}
 																	
 																	</style>															
 																</head>
@@ -803,6 +813,95 @@ var server = http.createServer(function(req, res) {
 																			<li>Rapport flash : Téléchargement au format PPT ou PDF</li>
 																		</ul>
 																	<div/>
+																	<br>
+																	<div class="text">
+																		<h3>Exemple de manipulation d'un fichier CSV</h3>
+																		<p>CSV Source File * :</p>
+																		<input type="file" id="dealCsv"/>
+																		<div id='container'></div>
+																	<div/>
+																	
+																	<script type="text/javascript">
+																	function uploadDealcsv () {}; 
+
+																	/*------ Method for read uploded csv file ------*/
+																	uploadDealcsv.prototype.getCsv = function(e) {
+																		 
+																		let input = document.getElementById('dealCsv');
+																		input.addEventListener('change', function() {
+																			var filePath = input.value;
+         
+																			// Allowing file type
+																			var allowedExtensions = 
+																					/(\.csv|\.txt)$/i;
+																			
+																			if (!allowedExtensions.exec(filePath)) {
+																				alert('Invalid file type');
+																				input.value = '';
+																				return false;
+																			} 
+																			else 
+																			{
+																				if (this.files && this.files[0]) {
+																		
+																					var myFile = this.files[0];
+																					var reader = new FileReader();
+																					
+																					reader.addEventListener('load', function (e) {
+																						
+																						let csvdata = e.target.result; 
+																						parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data 
+																					});
+																					
+																					reader.readAsBinaryString(myFile);
+																				}
+																			}
+																		});
+																	  }
+																  
+																	  /*------- Method for parse csv data and display --------------*/
+																	  uploadDealcsv.prototype.getParsecsvdata = function(data) {
+																  
+																		let parsedata = [];
+																			  																	  
+																		let newLinebrk = data.split("\\n");
+																		for(let i = 0; i < newLinebrk.length; i++) {
+																
+																			parsedata.push(newLinebrk[i].split(","));
+																			
+																		}
+																
+																		console.table(parsedata);
+																		
+																		var lines = data.split("\\n"), output = [];
+
+																		/* HEADERS */
+																		output.push("<tr><th>" 
+																			+ lines[0].slice().split(",").join("</th><th>") 
+																			+ "</th></tr>");
+
+																		let ln=lines.length;
+																		if(lines.length>10) {
+																			ln=10;
+																		}
+
+																		for (let i = 1; i < ln; i++)
+																			output.push("<tr><td>" 
+																				+ lines[i].slice().split(",").join("</td><td>") 
+																				+ "</td></tr>");
+
+																		output = "<table><tbody>" 
+																					+ output.join("") + "</tbody></table>";
+																																				   
+																		var div = document.getElementById('container');
+																		div.innerHTML = output
+																	  }
+																  
+																  
+																	
+																	var parseCsv = new uploadDealcsv();
+																	parseCsv.getCsv();
+																	</script>
 																</body>
 															</html>
 															`;												

@@ -8,8 +8,8 @@
 																	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
 																	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@latest/dist/pptxgen.min.js"></script>
 																	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/vcailleaud/genPPT@1.0.2/scripts/pptgen.js"></script>
-																	<script src='https://cdn.jsdelivr.net/npm/pdfmake@latest/build/pdfmake.min.js'></script>
-																	<script src='https://cdn.jsdelivr.net/npm/pdfmake@latest/build/vfs_fonts.min.js'></script>
+																	<script src="https://cdn.jsdelivr.net/npm/pdfmake@latest/build/pdfmake.min.js"></script>
+																	<script src="https://cdn.jsdelivr.net/npm/pdfmake@latest/build/vfs_fonts.min.js"></script>
 																	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 																	
 																	<script type="text/javascript">
@@ -32,10 +32,10 @@
 																			let slide = pptx.addSlide("PRJ 224");;
 																			
 																			//Title
-																			let title_label = {x: 0.25, y: 0.25, w: 1.5, h: 0.30, align: 'center', fontSize: 10, color: 'FFFFFF', fill: '203764'};
+																			let title_label = {x: 0.25, y: 0.25, w: 1.5, h: 0.30, align: 'center', fontSize: 10, color: 'FFFFFF', fill: 'e87b3a'}; 
 																			slide.addText('Projet', title_label);
 																
-																			let title = {x: 1.75, y: 0.25, w: 4, h: 0.30, align: 'center', fontSize: 10, color: '000000', fill: 'D9E1F2'};
+																			let title = {x: 1.75, y: 0.25, w: 4, h: 0.30, align: 'center', fontSize: 10, color: '000000', fill: 'D9D9D9'};
 																			slide.addText('PRJ 224', title);
 																			
 																			//Logo
@@ -44,38 +44,41 @@
 																			slide.addImage({ data: "image/png;base64,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", x: poxX, y: poxY, w: boxWidth, h: boxHeight });
 																
 																			//Actors
-																			let sponsor_label = {x: 0.25, y: 0.56, w: 1.5, h: 0.25, align: 'center', fontSize: 9, color: 'FFFFFF', fill: '203764'};
+																			let sponsor_label = {x: 0.25, y: 0.56, w: 1.5, h: 0.25, align: 'center', fontSize: 8, color: 'FFFFFF', fill: 'e87b3a'}; 
 																			slide.addText('Sponsor Projet', sponsor_label);
 																
-																			let sponsor = {x: 1.75, y: 0.56, w: 2, h: 0.25, align: 'left', fontSize: 9, color: '000000', fill: 'D9E1F2'};
+																			let sponsor = {x: 1.75, y: 0.56, w: 1.95, h: 0.25, align: 'left', fontSize: 8, color: '000000', fill: 'D9D9D9'};
 																			slide.addText('03.Jabirah Tuma (S-PM)', sponsor);
 																			
-																			let direction_label = {x: 3.75, y: 0.56, w: 1.5, h: 0.25, align: 'center', fontSize: 9, color: 'FFFFFF', fill: '203764'};
+																			let direction_label = {x: 3.70, y: 0.56, w: 1.5, h: 0.25, align: 'center', fontSize: 8, color: 'FFFFFF', fill: 'e87b3a'}; 
 																			slide.addText('Département Propriétaire', direction_label);
 																
-																			let direction = {x: 5.25, y: 0.56, w: 2, h: 0.25, align: 'left', fontSize: 9, color: '000000', fill: 'D9E1F2'};
+																			let direction = {x: 5.20, y: 0.56, w: 0.55, h: 0.25, align: 'left', fontSize: 8, color: '000000', fill: 'D9D9D9'};
 																			slide.addText('AIIEB', direction);
+
+																			let realisation = {x: 0.25, y: 1, w: 5.25, h: 1.75, align: 'left', fontSize: 8, color: '000000', fill: 'D9D9D9'};
+																			slide.addText('Beaucoup de choses...', realisation);
 																
 																			//Table
 																			let rows = [
 															[
-																{ text: "Date", options: { align: "left", color: 'FFFFFF', fill: '203764'} },
-																{ text: "Propriètaire", options: { align: "center", color: 'FFFFFF', fill: '203764'} },
-																{ text: "Type", options: { align: "right", color: 'FFFFFF', fill: '203764'} },
+																{ text: "Date", options: { align: "center", color: 'FFFFFF', fill: 'e87b3a'} },
+																{ text: "Propriètaire", options: { align: "center", color: 'FFFFFF', fill: 'e87b3a'} },
+																{ text: "Type", options: { align: "center", color: 'FFFFFF', fill: 'e87b3a'} },
 															],[
-																	{ text: "11/16/2023", options: { align: "left", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "1.Réunion Equipe", options: { align: "right", color: '000000', fill: 'D9E1F2'} },
+																	{ text: "16/11/2023", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "1.Réunion Equipe", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
 																],[
-																	{ text: "11/30/2023", options: { align: "left", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "2.Groupe de Pilotage", options: { align: "right", color: '000000', fill: 'D9E1F2'} },
+																	{ text: "30/11/2023", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "2.Groupe de Pilotage", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
 																],[
-																	{ text: "12/22/2023", options: { align: "left", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9E1F2'} },
-																	{ text: "3.Atelier Utilisateur", options: { align: "right", color: '000000', fill: 'D9E1F2'} },
+																	{ text: "22/12/2023", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "00. PMO", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
+																	{ text: "3.Atelier Utilisateur", options: { align: "center", color: '000000', fill: 'D9D9D9'} },
 																],];
-																			slide.addTable(rows, { x: 0.56, y: 3, w: 9, rowH: 0.25, align: "left"});
+																			slide.addTable(rows, { x: 0.25, y: 3, w: 9, rowH: 0.25, align: "left"});
 																			
 																			//Line chart
 																			let dataChartAreaLine = [
@@ -109,7 +112,7 @@
 																						font: 'Roboto',
 																						bold: true,
 																						fontSize: 15,
-																						color: '#4A86E8',
+																						color: '#e87b3a',
 																						fillColor: 'white',
 																						alignment: 'left'
 																					},
@@ -125,7 +128,7 @@
 																						font: 'Roboto',
 																						bold: true,
 																						fontSize: 11,
-																						color: 'black', //#4A86E8
+																						color: 'black',
 																						fillColor: 'white',
 																						alignment: 'right'
 																					},
@@ -134,7 +137,7 @@
 																						bold: true,
 																						fontSize: 11,
 																						color: 'white',
-																						fillColor: '#4A86E8',
+																						fillColor: '#e87b3a', 
 																						alignment: 'center'
 																					},
 																					tableContentValue: {
@@ -152,6 +155,14 @@
 																						color: 'black',
 																						fillColor: 'white',
 																						alignment: 'right'
+																					},
+																					tableContentValueTotalleft: {
+																						font: 'Roboto',
+																						bold: true,
+																						fontSize: 12,
+																						color: 'black',
+																						fillColor: 'white',
+																						alignment: 'left'
 																					},
 																					tableTitleSmall: {
 																						font: 'Roboto',
@@ -202,17 +213,23 @@
 																						table: {
 																							widths: [110,200,200],
 																							body: [
-																								[
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Date', style:'tableTitleContentLabel'}, 
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Propriètaire', style:'tableTitleContentLabel'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Type', style:'tableTitleContentLabel'}
-																								],
-																								[
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '', style:'tableContentValue'}
-																								]
-																							]
+															[
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Date', style:'tableTitleContentLabel'}, 
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Propriètaire', style:'tableTitleContentLabel'},
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Type', style:'tableTitleContentLabel'}
+															],[
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "16/11/2023", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "00. PMO", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "1.Réunion Equipe", style:'tableContentValue'}
+																],[
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "30/11/2023", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "00. PMO", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "2.Groupe de Pilotage", style:'tableContentValue'}
+																],[
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "22/12/2023", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "00. PMO", style:'tableContentValue'},
+																	{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: "3.Atelier Utilisateur", style:'tableContentValue'}
+																],]
 																						},
 																					},
 																					'    ',
@@ -223,7 +240,7 @@
 																							widths: [700],
 																							body: [
 																									[
-																										{ border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text : [], style:'tableContentValue'}
+																										{ border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text : 'Beaucoup de choses...', style:'tableContentValue'}
 																									]
 																							]
 																						},
@@ -236,31 +253,42 @@
 																						table: {
 																							widths: [100,100,70,70,70,70],
 																							body: [
-																								[
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Centre de coûts', style:'tableTitleContentLabel'}, 
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Type de coûts', style:'tableTitleContentLabel'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Années passées', style:'tableTitleContentLabel'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Année en cours', style:'tableTitleContentLabel'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Années suivantes', style:'tableTitleContentLabel'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Total', style:'tableTitleContentLabel'}
-																								],
-																								[
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'},
-																									{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: ' ', style:'tableContentValue'}
-																								],
-																								[
-																									{colSpan:3, border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: 'TOTAL', style:'tableContentValueTotal'},
-																									{},
-																									{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: ' ', style:'tableContentValueTotal'},
-																									{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: ' ', style:'tableContentValueTotal'},
-																									{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: ' ', style:'tableContentValueTotal'},
-																									{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: ' ', style:'tableContentValueTotal'}
-																								]
-																							]
+															[
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Centre de coûts', style:'tableTitleContentLabel'}, 
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Type de coûts', style:'tableTitleContentLabel'},
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Années passées', style:'tableTitleContentLabel'},
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Année en cours', style:'tableTitleContentLabel'},
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Années suivantes', style:'tableTitleContentLabel'},
+																{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: 'Total', style:'tableTitleContentLabel'}
+															],[
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '1.Métiers', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '3.Dépenses', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '8000', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '9500', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '0', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '17500', style:'tableContentValue'}
+																	],[
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '2.DSI', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '3.Dépenses', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '0', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '12000', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '0', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '12000', style:'tableContentValue'}
+																	],[
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '3.DIR', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '3.Dépenses', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '0', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '21000', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '0', style:'tableContentValue'},
+																		{border: [true, true, true, true], borderColor: ['white', 'white', 'white', 'white'], text: '21000', style:'tableContentValue'}
+																	],[
+																		{colSpan:2, border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: 'TOTAL', style:'tableContentValueTotal'},
+																		{},
+																		{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: '8000', style:'tableContentValueTotalleft'},
+																		{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: '42500', style:'tableContentValueTotalleft'},
+																		{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: '0', style:'tableContentValueTotalleft'},
+																		{border: [true, true, true, true], borderColor: ['#999999', 'black', '#999999', '#999999'], text: '50500', style:'tableContentValueTotalleft'}
+																	],]
 																						}
 																					}
 																				]
@@ -355,6 +383,15 @@
 																		background-color: #d46322;
 																	}
 																	
+         table {
+         border-collapse: collapse;
+         border: 2px black solid;
+         font: 12px sans-serif;
+         }
+         td {
+         border: 1px black solid;
+         padding: 5px;
+         }
 																	</style>															
 																</head>
 																<body style="background-color:white;">
@@ -380,6 +417,70 @@
 																			<li>Rapport flash : Téléchargement au format PPT ou PDF</li>
 																		</ul>
 																	<div>
-																
-															
+																	<input type="file" id="dealCsv">
+																	<div id='container'></div>
+																	<script type="text/javascript">
+																		function uploadDealcsv () {}; 
+
+																		/*------ Method for read uploded csv file ------*/
+																		uploadDealcsv.prototype.getCsv = function(e) {
+																			 
+																			let input = document.getElementById('dealCsv');
+																			input.addEventListener('change', function() {
+																	  
+																			  if (this.files && this.files[0]) {
+																	  
+																				  var myFile = this.files[0];
+																				  var reader = new FileReader();
+																				  
+																				  reader.addEventListener('load', function (e) {
+																					  
+																					  let csvdata = e.target.result; 
+																					  parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data 
+																				  });
+																				  
+																				  reader.readAsBinaryString(myFile);
+																			  }
+																			});
+																		  }
+																	  
+																		  /*------- Method for parse csv data and display --------------*/
+																		  uploadDealcsv.prototype.getParsecsvdata = function(data) {
+																	  
+																			  let parsedata = [];
+																			  																	  
+																			  let newLinebrk = data.split("\n");
+																			  for(let i = 0; i < newLinebrk.length; i++) {
+																	  
+																				  parsedata.push(newLinebrk[i].split(","));
+																				  
+																			  }
+																	  
+																			  console.table(parsedata);
+																			  
+																			  var lines = data.split("\n"), output = [];
+
+																				/* HEADERS */
+																				output.push("<tr><th>" 
+																					+ lines[0].slice().split(",").join("</th><th>") 
+																					+ "</th></tr>");
+
+																				for (let i = 1; i < lines.length; i++)
+																					output.push("<tr><td>" 
+																						+ lines[i].slice().split(",").join("</td><td>") 
+																						+ "</td></tr>");
+
+																				output = "<table><tbody>" 
+																							+ output.join("") + "</tbody></table>";
+
+																				
+																			 																			
+																			  var div = document.getElementById('container');
+																			  div.innerHTML = output
+																			  
+																		}
+																		
+																		var parseCsv = new uploadDealcsv();
+																		parseCsv.getCsv();
+																	</script>
 															</div></div></body></html>
