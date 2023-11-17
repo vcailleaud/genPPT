@@ -9,6 +9,9 @@ module.exports = {
 		},
 		reports: {
 			getFlashReport: 107
+		},
+		stroredSelectors : {
+			getDataobjectDetails: 172
 		}
 	}
 }

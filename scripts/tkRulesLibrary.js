@@ -1,5 +1,13 @@
 const https = require('https');
 const xml2js = require('xml2js');
+/*
+const CacheableLookup = require('cacheable-lookup');
+
+const cacheable = new CacheableLookup();
+
+cacheable.install(http.globalAgent);
+cacheable.install(https.globalAgent)
+*/
 
 /**
  * Here are Triskell functions
@@ -567,7 +575,7 @@ var methods = {
 	/*
 	 * createDataobject
 	 */
-	createDataobject: function (server, authash, jsessionid, objectName, dataobjectName, description, stage, pool, parentid, currency, attributes, childs, logger, callback) {
+	createDataobject: function (server, authash, jsessionid, objectName, dataobjectName, description, stage, pool, parentid, currency, attributes, childs, relations, roles, logger, callback) {
 		//'use strict';
 		/*
 		{
@@ -581,8 +589,7 @@ var methods = {
 		}
 
 		*/
-		//	const parser = new xml2js.Parser({ attrkey: "ATTR" });
-		
+														   
 		if(objectName && dataobjectName && stage && pool && parentid && currency) {
 			var uri = '/triskell/service/rest/dataobject/create';
 			var body = '<?xml version="1.0" encoding="UTF-8"?>'+
@@ -599,11 +606,19 @@ var methods = {
 			if(attributes) {body += '<attributes>'+attributes+'</attributes>'};
 			
 			if(childs) {body += '<childs>'+childs+'</childs>'};
+
+			if(relations) {body += '<relationships>'+relations+'</relationships>'};
+
+			if(roles) {body += '<user_roles>'+roles+'</user_roles>'};
 			
 			body = 	body+	'</dataobject>'+
 						'</dataobjects>';
-			
-			var response = ""
+			try {
+				logger.debug(body);
+				var body = body.replace(/&/g, '&amp;');
+			} catch (error) {
+				console.error('!!!! wrong escaping characters !!!!');
+			}
 
 			var options = {
 			  hostname:  server,
@@ -621,41 +636,59 @@ var methods = {
 			logger.debug('createDataobject.uri : ' + uri);
 			logger.debug('createDataobject.body : ' + body.toString());
 			
-			var req = https.request(options, function(res) {
-			   res.setEncoding('utf8');
-			   var buffer = "";
-			   res.on( "data", function( data ) { buffer = buffer + data; } );
-			   res.on( "end", function( data ) { 
-					if(buffer.includes('Server error')) {
-						callback('Server error', null);
-					} else {
-						try {
-							logger.debug('createDataobject.result : ' + buffer);
-							//console.log(buffer.dataobjects.dataobject[0]);
-							xml2js.parseString(buffer, function (err, result) {
-								//console.dir(result);
-								callback(null, result);
-							});
-						} catch (error) {
-							console.error(error);
-							logger.debug('createDataobject.error : ' + error);
-							callback(null, error);
-						}
-					}
-				});
-			});
+			var nretryCreateDO = -1;
+			var maxretryCreateDO = 5;
+			//console.log(options);
+			retryCreateDO = function() {
+				nretryCreateDO++;
 
-			req.on('error', function(e) {
-			  console.log(new Date().toISOString()+' - problem with the request: ' + e.message);
-			  logger.error('problem with the request: ' + e.message);
-			});
-			
-			// write data to request body
-			req.write(body);
-			req.end();
+				var req = https.request(options, function(res) {
+				res.setEncoding('utf8');
+				var buffer = "";
+				res.on( "data", function( data ) { buffer = buffer + data; } );
+				res.on( "end", function( data ) { 
+						if(buffer.includes('Server error')) {
+							if(nretryCreateDO >= maxretryCreateDO){
+								console.error('Server error');
+								logger.debug('createDataobject.error : ' + 'Server error');
+								callback('Server error', null);
+							} else {
+								setTimeout(retryCreateDO, 3000, nretryCreateDO);
+							}
+						} else {
+							try {
+								logger.debug('createDataobject.result : ' + buffer);
+								//console.log(buffer.dataobjects.dataobject[0]);
+								xml2js.parseString(buffer, function (err, result) {
+									//console.dir(result);
+									if(buffer.includes('error')) {
+										console.error('error');
+										logger.debug('createDataobject.error : ' + result);
+										callback('error', result);
+									} else {
+										callback(null, result);
+									}
+								});
+							} catch (error) {
+								callback('error', error);
+							}
+						}
+					});
+				});
+
+				req.on('error', function(e) {
+				console.log(new Date().toISOString()+' - problem with the request: ' + e.message);
+				logger.error('problem with the request: ' + e.message);
+				});
+				
+				// write data to request body
+				req.write(body);
+				req.end();
+			}
+			retryCreateDO(0);
 		}
 	},
-
+	
 	/*------------------------------------------------------*/
 	/**
 	 * Set a dataobject value

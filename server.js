@@ -78,7 +78,22 @@ var server = http.createServer(function(req, res) {
 			console.log(`from: ${req.socket.remoteAddress}`);
 			
 			var extJS = require('./scripts/tkRulesLibrary.js');
-			var tenantConfig = require('./config/'+tenant_id+'/index_'+tenant_id+'.js');
+			//var tenantConfig = require('./config/'+tenant_id+'/index_'+tenant_id+'.js');
+
+			try {
+				var tenantJS = require('./'+tenant_id+'.js');
+			  } catch (e) {
+				logger.debug('cannot find the libraire for tenant id : ' + tenant_id);
+				  console.log(new Date().toISOString()+' - cannot find the libraire for tenant id : ' + tenant_id);
+			}
+
+			try {
+				var tenantConfig = require('./config/'+tenant_id+'/index_'+tenant_id+'.js');	
+			  } catch (e) {
+				logger.debug('cannot find config for tenant id : ' + tenant_id);
+				  console.log(new Date().toISOString()+' - cannot find config for tenant id : ' + tenant_id);
+			}
+
 			//console.log(`conf: ${JSON.stringify(tenantConfig)}`);
 			let data = []
 			// we can access HTTP headers
@@ -279,7 +294,22 @@ var server = http.createServer(function(req, res) {
 					}
 				} else //Tenant gouv_rm_2021 (for demos)
 				if (tenant_id === '2139') {
-					if (cmd[2] === 'gouv' && cmd[3] === 'projectHtmlFrame') {
+					//$FUNCTIONcallWebHook($URLhttp://tkbatchserver.triskellsoftware.com:8090/triskell/copyDataobject?user_name=#user_name#&tenant=#tenant_id#§$METHODpost)
+					if (cmd[2] === 'copyDataobject') {
+						tenantJS.copyDataobject(dataObjectId, logger, function(err, response) {
+							if (err) {
+								console.log(new Date().toISOString()+' - error : ' + err.toString());
+							} else {
+								//res.writeHead(200,{ 'Content-Type': 'application/json' });
+								//res.write(JSON.stringify({resultType:2, message:response}));
+								res.writeHead(200,{ 'Content-Type': 'text/html' });
+								res.write(response);
+
+								console.log(response);
+								res.end();
+							}
+						});
+					} else if (cmd[2] === 'gouv' && cmd[3] === 'projectHtmlFrame') {
 						if(typeof q.execution_identifier != 'undefined') {
 							extJS.login(tenantConfig.triskell.server, tenantConfig.triskell.login, tenantConfig.triskell.password, 
 								function(err, response) {
@@ -830,13 +860,16 @@ var server = http.createServer(function(req, res) {
 																		let input = document.getElementById('dealCsv');
 																		input.addEventListener('change', function() {
 																			var filePath = input.value;
+																			var fileSize = input.size;
+																			var iConvert = (fileSize / 1048576).toFixed(2);
          
 																			// Allowing file type
 																			var allowedExtensions = 
 																					/(\.csv|\.txt)$/i;
 																			
-																			if (!allowedExtensions.exec(filePath)) {
-																				alert('Invalid file type');
+																			if (!allowedExtensions.exec(filePath) || fileSize > 1048576) {
+																				alert('Invalid file type or size : ' + iConvert + ' MB \\n\\n' + 'Please make sure your file is in pdf or doc format and less than 1 MB.\\n\\n";');
+																				alert('Invalid file type or size : ' + iConvert + ' MB \\n\\n' + 'Please make sure your file is in pdf or doc format and less than 1 MB.\\n\\n";');
 																				input.value = '';
 																				return false;
 																			} 
@@ -853,7 +886,8 @@ var server = http.createServer(function(req, res) {
 																						parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data 
 																					});
 																					
-																					reader.readAsBinaryString(myFile);
+																					//reader.readAsBinaryString(myFile);
+																				  	reader.readAsText(myFile, 'UTF-8')
 																				}
 																			}
 																		});
@@ -938,7 +972,7 @@ var server = http.createServer(function(req, res) {
 						result = 'HTTP/1.1 500 KO\r\n\r\n';
 						res.writeHead(200, null);
 						res.end(result);
-					}
+				}
 			})
 			
 			//X

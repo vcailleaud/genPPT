@@ -29,14 +29,14 @@
 																			pptx.theme = { headFontFace: "Montserrat" };
 																			pptx.theme = { bodyFontFace: "Montserrat" };			
 																
-																			let slide = pptx.addSlide("PRJ 224");;
+																			let slide = pptx.addSlide("PRJ 224 - Un beau nom");;
 																			
 																			//Title
 																			let title_label = {x: 0.25, y: 0.25, w: 1.5, h: 0.30, align: 'center', fontSize: 10, color: 'FFFFFF', fill: 'e87b3a'}; 
 																			slide.addText('Projet', title_label);
 																
 																			let title = {x: 1.75, y: 0.25, w: 4, h: 0.30, align: 'center', fontSize: 10, color: '000000', fill: 'D9D9D9'};
-																			slide.addText('PRJ 224', title);
+																			slide.addText('PRJ 224 - Un beau nom', title);
 																			
 																			//Logo
 																			//let boxHeight = 0.7, boxWidth = 2, poxY = 4.9, poxX = 8;
@@ -185,7 +185,7 @@
 																							body: [
 																								[
 																									{border: [true, false, false, true], borderColor: ['#999999', '#999999', '#999999', '#999999'], text: 'Nom du projet', style:'tableTitleHeaderLabel'}, 
-																									{border: [false, false, false, true], borderColor: ['#999999', '#999999', '#999999', '#999999'], text: 'PRJ 224', style:'tableTitleHeaderValue', colSpan:3},
+																									{border: [false, false, false, true], borderColor: ['#999999', '#999999', '#999999', '#999999'], text: 'PRJ 224 - Un beau nom', style:'tableTitleHeaderValue', colSpan:3},
 																									{},
 																									{}
 																								],
@@ -293,7 +293,7 @@
 																					}
 																				]
 																			}
-																			pdfMake.createPdf(dd).download('PRJ 224.pdf');
+																			pdfMake.createPdf(dd).download('PRJ 224 - Un beau nom.pdf');
 																		}
 																	</script>
 																	<style>
@@ -382,16 +382,26 @@
 																	.btn-orange:hover {
 																		background-color: #d46322;
 																	}
+
+																	table {
+																		border-collapse: collapse;
+																		border: 2px black solid;
+																		font: 12px sans-serif;
+																		}
+																		td {
+																		border: 1px black solid;
+																		padding: 5px;
+																	}
 																	
-         table {
-         border-collapse: collapse;
-         border: 2px black solid;
-         font: 12px sans-serif;
-         }
-         td {
-         border: 1px black solid;
-         padding: 5px;
-         }
+				
+								   
+								 
+							   
+		  
+			 
+								 
+					  
+		  
 																	</style>															
 																</head>
 																<body style="background-color:white;">
@@ -417,71 +427,99 @@
 																			<li>Rapport flash : Téléchargement au format PPT ou PDF</li>
 																		</ul>
 																	<div>
-																	<input type="file" id="dealCsv">
-																	<div id='container'></div>
+																	<br>
+																	<div class="text">
+																		<h3>Exemple de manipulation d'un fichier CSV</h3>
+																		<p>CSV Source File * :</p>
+																		<input type="file" id="dealCsv">
+																		<div id="container"></div>
+																	<div>
+																	
 																	<script type="text/javascript">
-																		function uploadDealcsv () {}; 
+																	function uploadDealcsv () {}; 
 
-																		/*------ Method for read uploded csv file ------*/
-																		uploadDealcsv.prototype.getCsv = function(e) {
-																			 
-																			let input = document.getElementById('dealCsv');
-																			input.addEventListener('change', function() {
-																	  
-																			  if (this.files && this.files[0]) {
-																	  
-																				  var myFile = this.files[0];
-																				  var reader = new FileReader();
-																				  
-																				  reader.addEventListener('load', function (e) {
-																					  
-																					  let csvdata = e.target.result; 
-																					  parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data 
-																				  });
-																				  
-																				  //reader.readAsBinaryString(myFile);
-																				  reader.readAsText(myFile, 'UTF-8')
-																			  }
-																			});
-																		  }
-																	  
-																		  /*------- Method for parse csv data and display --------------*/
-																		  uploadDealcsv.prototype.getParsecsvdata = function(data) {
-																	  
-																			  let parsedata = [];
-																			  																	  
-																			  let newLinebrk = data.split("\n");
-																			  for(let i = 0; i < newLinebrk.length; i++) {
-																	  
-																				  parsedata.push(newLinebrk[i].split(","));
-																				  
-																			  }
-																	  
-																			  console.table(parsedata);
-																			  
-																			  var lines = data.split("\n"), output = [];
-
-																				/* HEADERS */
-																				output.push("<tr><th>" 
-																					+ lines[0].slice().split(",").join("</th><th>") 
-																					+ "</th></tr>");
-
-																				for (let i = 1; i < lines.length; i++)
-																					output.push("<tr><td>" 
-																						+ lines[i].slice().split(",").join("</td><td>") 
-																						+ "</td></tr>");
-
-																				output = "<table><tbody>" 
-																							+ output.join("") + "</tbody></table>";
-
-																				
-																			 																			
-																			  var div = document.getElementById('container');
-																			  div.innerHTML = output
-																			  
-																		}
+																	/*------ Method for read uploded csv file ------*/
+																	uploadDealcsv.prototype.getCsv = function(e) {
+																		 
+																		let input = document.getElementById('dealCsv');
+																		input.addEventListener('change', function() {
+																			var filePath = input.value;
+																			var fileSize = input.size;
+																			var iConvert = (fileSize / 1048576).toFixed(2);
+         
+																			// Allowing file type
+																			var allowedExtensions = 
+																					/(.csv|.txt)$/i;
+																			
+																			if (!allowedExtensions.exec(filePath) || fileSize > 1048576) {
+																				alert('Invalid file type or size : ' + iConvert + ' MB \n\n' + 'Please make sure your file is in pdf or doc format and less than 1 MB.\n\n";');
+																				input.value = '';
+																				return false;
+																			} 
+																			else 
+																			{
+																				if (this.files && this.files[0]) {
 																		
-																		var parseCsv = new uploadDealcsv();
-																		parseCsv.getCsv();
+																					var myFile = this.files[0];
+																					var reader = new FileReader();
+																					
+																					reader.addEventListener('load', function (e) {
+																						
+																						let csvdata = e.target.result; 
+																						parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data 
+																					});
+																					
+																					//reader.readAsBinaryString(myFile);
+																				  	reader.readAsText(myFile, 'UTF-8')
+																				}
+																			}
+																		});
+																	  }
+																  
+																	  /*------- Method for parse csv data and display --------------*/
+																	  uploadDealcsv.prototype.getParsecsvdata = function(data) {
+																  
+																		let parsedata = [];
+																			  																	  
+																		let newLinebrk = data.split("\n");
+																		for(let i = 0; i < newLinebrk.length; i++) {
+																
+																			parsedata.push(newLinebrk[i].split(","));
+																			
+																		}
+																
+																		console.table(parsedata);
+																		
+																		var lines = data.split("\n"), output = [];
+
+																		/* HEADERS */
+																		output.push("<tr><th>" 
+																			+ lines[0].slice().split(",").join("</th><th>") 
+																			+ "</th></tr>");
+
+																		let ln=lines.length;
+																		if(lines.length>10) {
+																			ln=10;
+																		}
+
+																		for (let i = 1; i < ln; i++)
+																			output.push("<tr><td>" 
+																				+ lines[i].slice().split(",").join("</td><td>") 
+																				+ "</td></tr>");
+
+																		output = "<table><tbody>" 
+																					+ output.join("") + "</tbody></table>";
+																																				   
+																		var div = document.getElementById('container');
+																		div.innerHTML = output
+					 
+																	  }
+																  
+																  
+																	
+																	var parseCsv = new uploadDealcsv();
+																	parseCsv.getCsv();
 																	</script>
-															</div></div></body></html>
+																
+															
+															</div></div></div></div></body></html>
