@@ -155,6 +155,7 @@ var methods = {
 	},
 
 	renderProjectHTMLiFrame : function(dataObjectId, identifier, logger, callback) {
+		var now = new Date();
 		extJS.login(tenantConfig.triskell.server, tenantConfig.triskell.login, tenantConfig.triskell.password, 
 			function(err, response) {
 				const authash = response[0];
@@ -339,9 +340,8 @@ var methods = {
 									callback(err2, null);
 								}
 								/*
-								if (response2.data.res[0]) {
-									var data = response2.data.res[0].x;
-								}
+								<a onclick="flashPPT()">Au format PPT</a>
+								<a onclick="flashPDF()">Au format PDF</a>
 								*/
 
 								//Google chart test
@@ -679,8 +679,8 @@ var methods = {
 															<i class="fa fa-caret-down"></i>
 														</button>
 														<div class="dropdown-content">
-															<a onclick="flashPPT()">Au format PPT</a>
-															<a onclick="flashPDF()">Au format PDF</a>
+															<a onclick="flashPPT()"><div style="font-size:24px;color:#e87b3a;font-family:Roboto-Medium,sans-serif"><i class="fa fa-file-powerpoint-o"></i> Au format PPT</div></a>
+															<a onclick="flashPDF()"><div style="font-size:24px;color:#e87b3a;font-family:Roboto-Medium,sans-serif"><i class="fa fa-file-pdf-o"></i> Au format PDF</div></a>
 														</div>
 													</div>
 												</div>
@@ -793,6 +793,8 @@ var methods = {
 										`;												
 								
 								callback(null, html1);
+
+								console.log(new Date() - now);
 								/*
 								res.writeHead(200,{'Content-Type': 'text/html'});
 								res.write(html1);
@@ -1028,7 +1030,7 @@ var methods = {
 			if (response2.data.getProjectFlashDetails.res) {
 				let fillLabel = 'e87b3a'; //203764
 				let fillValue = 'D9D9D9'; //D9E1F2
-				//var data = response2.data.getProjectFlashDetails.res;
+
 				/*
 				dataobject_name as name,
 				$_$SponsorProjet as sponsor,
@@ -1307,8 +1309,6 @@ var methods = {
 			} else {
 				callback(err2, null);
 			}
-
-			
 
 			console.log(new Date() - now);
 			var HTML = '<!doctype html>'+
