@@ -185,6 +185,7 @@ var methods = {
 									*/
 
 									for(var id in response2.data.getProjectFlashDetails.res) {
+										var jirakey = response2.data.getProjectFlashDetails.res[id].jirakey;
 										var name = response2.data.getProjectFlashDetails.res[id].name;
 										var sponsor = response2.data.getProjectFlashDetails.res[id].sponsor;
 										var departement = response2.data.getProjectFlashDetails.res[id].departement;
@@ -673,7 +674,7 @@ var methods = {
 											<body style="background-color:white;">
 												<div class="navbar">
 												<a href="#home">Home</a>
-												<a href="https://triskelldo.atlassian.net/jira/software/projects/PRFPRJ226/boards/9" target="_blank">JIRA</a>
+												<a href="https://triskelldo.atlassian.net/browse/${jirakey}" target="_blank">JIRA</a>
 													<div class="dropdown">
 														<button class="dropbtn"><i class="fa fa-download"></i> Rapport Flash
 															<i class="fa fa-caret-down"></i>

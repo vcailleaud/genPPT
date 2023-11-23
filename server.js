@@ -128,6 +128,7 @@ var server = http.createServer(function(req, res) {
 									
 									extJS.GetRequestIdentifierData(tenantConfig.triskell.server, tenantConfig.triskell.login, authash, jsessionid, q.execution_identifier, logger, 
 										function() {
+											/*
 											extJS.executeStoredSelector(tenantConfig.triskell.server, tenantConfig.triskell.login, tenantConfig.triskell.token, 12, "", logger, 
 											function(err, response2) {
 												//
@@ -250,7 +251,7 @@ var server = http.createServer(function(req, res) {
 																</script>
 																<style>
 																.button {
-																	background-color: #43a047; /* Green */
+																	background-color: #43a047; // Green 
 																	border: none;
 																	color: white;
 																	
@@ -272,7 +273,16 @@ var server = http.createServer(function(req, res) {
 												res.end();
 												console.log('OK');
 												}
-											)
+											)*/
+
+											//html1 = '<iframe title="Suivi_ProfServ_GEPIL" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=3e07acf0-6250-4ca1-8ec5-14fac366def0&autoAuth=true&ctid=641d0e71-e7ee-4563-8981-5522132286ac" frameborder="0" allowFullScreen="true"></iframe>';
+
+											html1 = '<iframe width="800" height="600" src="https://app.powerbi.com/reportEmbed?reportId=3e07acf0-6250-4ca1-8ec5-14fac366def0&autoAuth=true&ctid=641d0e71-e7ee-4563-8981-5522132286ac"></iframe>';
+
+											res.writeHead(200,{'Content-Type': 'text/html'});
+											res.write(html1);
+											res.end();
+											console.log('OK');
 										} 
 									)
 								}
